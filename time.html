@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta charset="utf-8"></head>
+<body>
+	<a href="./index.html"><img src="./images/logo.png" /></a>
+    <div id="id_name">00:00:08</div>
+    <script>
+        const start = new Date();
+        function timer(start) {
+          var now = new Date();
+          var det = now - start;
+          console.log(det);
+          now.setTime(det);
+          now.setHours(0);
+          document.getElementById("id_name").innerHTML = now.toLocaleTimeString();
+        }
+        setInterval(function(){timer(start)}, 1000);
+    </script>
+<a href="./index.html">返回</a>
+</body>
+<script id="allow-copy_script">
+    (function agent() {
+        let unlock = false
+        document.addEventListener('allow_copy', (event) => {
+          unlock = event.detail.unlock
+        })
+    
+        const copyEvents = [
+          'copy',
+          'cut',
+          'contextmenu',
+          'selectstart',
+          'mousedown',
+          'mouseup',
+          'mousemove',
+          'keydown',
+          'keypress',
+          'keyup',
+        ]
+        const rejectOtherHandlers = (e) => {
+          if (unlock) {
+            e.stopPropagation()
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+          }
+        }
+        copyEvents.forEach((evt) => {
+          document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+            capture: true,
+          })
+        })
+      })()
+</script>
+
+</html>
