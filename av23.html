@@ -1,0 +1,49 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <title name="蓝蓝路"></title>
+</head>
+
+<body>
+	<a href="./index.html"><img src="./images/logo.png" /></a>
+    <video width="320" height="200" controls="">
+        <source src="./video/av23.mp4" type="video/mp4">
+    </video>
+
+    <a href="./index.html">返回</a>
+</body>
+<script id="allow-copy_script">
+    (function agent() {
+        let unlock = false
+        document.addEventListener('allow_copy', (event) => {
+          unlock = event.detail.unlock
+        })
+    
+        const copyEvents = [
+          'copy',
+          'cut',
+          'contextmenu',
+          'selectstart',
+          'mousedown',
+          'mouseup',
+          'mousemove',
+          'keydown',
+          'keypress',
+          'keyup',
+        ]
+        const rejectOtherHandlers = (e) => {
+          if (unlock) {
+            e.stopPropagation()
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+          }
+        }
+        copyEvents.forEach((evt) => {
+          document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+            capture: true,
+          })
+        })
+      })()
+</script>
+
+</html>
